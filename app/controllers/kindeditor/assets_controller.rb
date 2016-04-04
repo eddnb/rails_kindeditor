@@ -10,7 +10,7 @@ class Kindeditor::AssetsController < ApplicationController
         begin
           @asset = "Kindeditor::#{@dir.camelize}".constantize.new(:asset => @imgFile,:fixed_folder => @fixed_folder)
 
-          @asset.private_path = current_user.private_editor_resource_path if current_user && current_user.respond_to?(:private_editor_resource_path)
+          #@asset.private_path = current_user.private_editor_resource_path if current_user && current_user.respond_to?(:private_editor_resource_path)
           @asset.owner_id = params[:owner_id] ? params[:owner_id] : 0
           logger.warn '========= Warning: the owner_id is 0, "delete uploaded files automatically" will not work. =========' if defined?(logger) && @asset.owner_id == 0
           @asset.asset_type = @dir
@@ -25,7 +25,7 @@ class Kindeditor::AssetsController < ApplicationController
       else # do not touch database
         begin
           uploader = "Kindeditor::#{@dir.camelize}Uploader".constantize.new
-          uploader.private_path = current_user.private_editor_resource_path if current_user && current_user.respond_to?(:private_editor_resource_path)
+          #uploader.private_path = current_user.private_editor_resource_path if current_user && current_user.respond_to?(:private_editor_resource_path)
           uploader.fixed_folder = @fixed_folder
           uploader.digest_filename = @digest_filename
           uploader.store!(@imgFile)
