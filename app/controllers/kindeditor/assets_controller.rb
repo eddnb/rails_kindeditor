@@ -44,10 +44,10 @@ class Kindeditor::AssetsController < ApplicationController
   def list
     @root_path = "#{Rails.public_path}/#{RailsKindeditor.upload_store_dir}/"
     @root_url = "/#{RailsKindeditor.upload_store_dir}/"
-    if current_user && current_user.respond_to?(:private_editor_resource_path)
-      @root_path = "#{Rails.public_path}/#{RailsKindeditor.upload_store_dir}/#{current_user.private_editor_resource_path}/"
-      @root_url = "/#{RailsKindeditor.upload_store_dir}/#{current_user.private_editor_resource_path}/"
-    end
+    # if current_user && current_user.respond_to?(:private_editor_resource_path)
+    #   @root_path = "#{Rails.public_path}/#{RailsKindeditor.upload_store_dir}/#{current_user.private_editor_resource_path}/"
+    #   @root_url = "/#{RailsKindeditor.upload_store_dir}/#{current_user.private_editor_resource_path}/"
+    # end
     @img_ext = Kindeditor::AssetUploader::EXT_NAMES[:image]
     @dir = params[:dir].strip || ""
     unless Kindeditor::AssetUploader::EXT_NAMES.keys.map(&:to_s).push("").include?(@dir)
