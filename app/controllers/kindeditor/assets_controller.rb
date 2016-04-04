@@ -73,8 +73,8 @@ class Kindeditor::AssetsController < ApplicationController
       @current_dir_path = ""
       @moveup_dir_path = ""
     else
-      @current_path = @root_path + @path + "/"
-      @current_url = @root_url + @path + "/"
+      @current_path = @root_path + @path
+      @current_url = @root_url + @path
       @current_dir_path = @path
       @moveup_dir_path = @current_dir_path.gsub(/(.*?)[^\/]+\/$/, "")
     end
@@ -107,7 +107,7 @@ class Kindeditor::AssetsController < ApplicationController
           hash[:has_file] = false
           hash[:filesize] = File.size(file)
           hash[:dir_path] = ""
-          file_ext = file.gsub(/.*\./,"")
+          file_ext = file.gsub(/.*\./,"").downcase
           hash[:is_photo] = @img_ext.include?(file_ext)
           hash[:filetype] = file_ext
         end
